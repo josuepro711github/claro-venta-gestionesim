@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>claro-venta-gestionesim</artifactId>
+    <groupId>pe.com.claro.venta</groupId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>claro-venta-gestionesim-model</artifactId>
+  <name>claro-venta-gestionesim-model</name>
+
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<claro.rest.api.client>1.0.0</claro.rest.api.client>
+  </properties>
+
+  <dependencies>
+		<dependency>
+			<groupId>pe.com.claro.venta</groupId>
+			<artifactId>claro-rest-api-client</artifactId>
+			<version>${claro.rest.api.client}</version>
+		</dependency>
+  </dependencies>
+
+</project>
