@@ -1,4 +1,4 @@
 # claro-venta-gestionesim
 Servicio para chip virtuales claro
 
-FUENTES QUE ESTAN ACTUALMNETE EN PRODUCCION
+FUENTES DE JOSUE CISNEROS
