@@ -14,6 +14,8 @@
 		<module>claro-venta-gestionesim-model</module>
 		<module>claro-venta-gestionesim-domain</module>
 		<module>claro-venta-gestionesim-resource</module>
+		<module>claro-venta-gestionesim-integration</module>
+		<module>claro-venta-gestion-esim-integration</module>
   </modules>
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
