@@ -1,6 +1,8 @@
 package pe.com.claro.venta.gestionesim.canonical.request;
 
 import java.io.Serializable;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -14,9 +16,8 @@ public class ReservarCodigoRequest implements Serializable {
 	
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private AuditRequest auditRequest;
-	@JsonInclude(JsonInclude.Include.NON_EMPTY)
-	private String status;
-	private ListaRequestOpcional listaAdicionalRequest;
+	
+	private List<ListaRequestOpcional> listaRequestOpcional;
 	 
 	public AuditRequest getAuditRequest() {
 		return auditRequest;
@@ -26,19 +27,11 @@ public class ReservarCodigoRequest implements Serializable {
 		this.auditRequest = auditRequest;
 	}
 
-	public String getStatus() {
-		return status;
+	public List<ListaRequestOpcional> getListaAdicionalRequest() {
+		return listaRequestOpcional;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setListaAdicionalRequest(List<ListaRequestOpcional> listaAdicionalRequest) {
+		this.listaRequestOpcional = listaAdicionalRequest;
 	}
-
-	public ListaRequestOpcional getListaAdicionalRequest() {
-		return listaAdicionalRequest;
-	}
-
-	public void setListaAdicionalRequest(ListaRequestOpcional listaAdicionalRequest) {
-		this.listaAdicionalRequest = listaAdicionalRequest;
-	}	
 }

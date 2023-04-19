@@ -40,4 +40,6 @@ public class PropertiesExternos implements Serializable {
 	public static final String IDT3MSG = "idt3.mensaje";
 	public static final String IDT4CODIGO = "idt4.codigo";
 	public static final String IDT4MSG = "idt4.mensaje";
+	
+	public static final String STATUS = "estado.libre";
 }
