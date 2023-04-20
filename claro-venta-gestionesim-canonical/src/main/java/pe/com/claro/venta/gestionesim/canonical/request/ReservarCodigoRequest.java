@@ -13,12 +13,14 @@ import pe.com.claro.common.bean.ListaRequestOpcional;
 public class ReservarCodigoRequest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private AuditRequest auditRequest;
-	
+
 	private List<ListaRequestOpcional> listaRequestOpcional;
-	 
+
+	private DownloadOrderRequest downloadOrderRequest;
+
 	public AuditRequest getAuditRequest() {
 		return auditRequest;
 	}
@@ -34,4 +36,14 @@ public class ReservarCodigoRequest implements Serializable {
 	public void setListaAdicionalRequest(List<ListaRequestOpcional> listaAdicionalRequest) {
 		this.listaRequestOpcional = listaAdicionalRequest;
 	}
+
+	public DownloadOrderRequest getDownloadOrderRequest() {
+		return downloadOrderRequest;
+	}
+
+	public void setDownloadOrderRequest(DownloadOrderRequest downloadOrderRequest) {
+		this.downloadOrderRequest = downloadOrderRequest;
+	}
+	
+	
 }

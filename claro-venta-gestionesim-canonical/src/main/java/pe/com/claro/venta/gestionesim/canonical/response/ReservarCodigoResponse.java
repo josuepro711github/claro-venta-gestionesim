@@ -1,4 +1,5 @@
 package pe.com.claro.venta.gestionesim.canonical.response;
+
 import java.io.Serializable;
 import java.util.List;
 
