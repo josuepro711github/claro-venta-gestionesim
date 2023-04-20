@@ -22,11 +22,14 @@ import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import pe.com.claro.common.bean.ELKLogLegadoBean;
 import pe.com.claro.common.bean.HeaderRequest;
 import pe.com.claro.common.property.Constantes;
-import pe.com.claro.common.property.PropertiesExterno;
 import pe.com.claro.common.util.ClaroUtil;
 import pe.com.claro.common.util.PropertiesExternos;
+import pe.com.claro.venta.gestionesim.canonical.request.ActualizarEstadoRequest;
+import pe.com.claro.venta.gestionesim.canonical.request.DownloadOrderRequest;
+import pe.com.claro.venta.gestionesim.canonical.request.HeaderRequestBean;
 import pe.com.claro.venta.gestionesim.canonical.request.ReservarCodigoRequest;
 import pe.com.claro.venta.gestionesim.canonical.response.ReservarCodigoResponse;
 import pe.com.claro.venta.gestionesim.domain.service.GestionesimService;
@@ -46,8 +49,11 @@ public class GestioneSimResource {
 	@EJB
 	private GestionesimService gestionesimService;
 
-	@EJB
-	private PropertiesExterno propertiesExterno;
+	private PropertiesExternos propertiesExternos;
+	
+	public void initProperties() {
+		propertiesExternos = new PropertiesExternos(configuration);
+	}
 
 	@POST
 	@Path("/reservarCodigo")
@@ -59,9 +65,9 @@ public class GestioneSimResource {
 	public Response reservarCodigo(@Context HttpHeaders httpHeaders,
 			@ApiParam(value = "El objeto request", required = true) ReservarCodigoRequest request)
 			throws JsonProcessingException {
-
 		long tiempoInicio = System.currentTimeMillis();
 		long tiempoTotal = 0L;
+		initProperties();
 		Response resJSON = Response.ok().entity(Constantes.TEXTOVACIO).build();
 		Response.Status httpCode = Response.Status.CREATED;
 		String result = Constantes.TEXTO_VACIO;
@@ -70,6 +76,12 @@ public class GestioneSimResource {
 		String nombreMetodo = "reservarCodigo";
 		HeaderRequest headerRequest = null;
 		String idTransaccion = Constantes.TEXTOVACIO;
+		String trazabilidad = null;
+		ActualizarEstadoRequest actualizarEstadoRequest = null;
+		String message = null;
+		DownloadOrderRequest orderRequest = null;
+		HeaderRequestBean header = null;
+		ELKLogLegadoBean elkLegadoBean = null;
 		try {
 			headerRequest = new HeaderRequest(httpHeaders);
 
@@ -81,8 +93,8 @@ public class GestioneSimResource {
 
 			logger.info(mensajeTransaccion + Constantes.INICIO + nombreMetodo);
 			logger.info(Constantes.HEADERREQUEST + ClaroUtil.printPrettyJSONString(headerRequest));
-
-			response = gestionesimService.reservarCodigo(mensajeTransaccion, request, headerRequest);
+	
+			response = gestionesimService.reservarCodigo(mensajeTransaccion, request, header, trazabilidad, elkLegadoBean, orderRequest, message, actualizarEstadoRequest, propertiesExternos);
 
 			response.setIdTransaccion(idTransaccion);
 			result = new ObjectMapper().writeValueAsString(response);
@@ -95,8 +107,8 @@ public class GestioneSimResource {
 			try {
 				response = new ReservarCodigoResponse();
 
-				response.setCodigoRespuesta(propertiesExterno.getValueProperty(PropertiesExternos.IDF2CODIGO));
-				response.setMensajeRespuesta(propertiesExterno.getValueProperty(PropertiesExternos.IDF2MSG));
+				response.setCodigoRespuesta(propertiesExternos.idf2codigo);
+				response.setMensajeRespuesta(propertiesExternos.idf2msg);
 				response.setIdTransaccion(idTransaccion);
 				result = new ObjectMapper().writeValueAsString(response);
 			} catch (JsonProcessingException ex) {

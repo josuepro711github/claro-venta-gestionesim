@@ -1,7 +1,7 @@
 package pe.com.claro.venta.gestionesim.canonical.response;
 
-public class DownloadOrderResponse {
-
+public class DownloadOrderResponse extends HeaderResponse{
+	
 	private String es2pSmdpAddress;
 	private String iccid;
 	private HeaderResponse header;
@@ -24,8 +24,4 @@ public class DownloadOrderResponse {
 	public void setHeader(HeaderResponse header) {
 		this.header = header;
 	}
-	
-	
-	
-	
 }

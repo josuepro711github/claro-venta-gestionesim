@@ -14,8 +14,6 @@
 		  <claro.common>1.0.0</claro.common>
 		  <javaee.api>7.0</javaee.api>
 	</properties>
-  
-  
      <dependencies>
 		<dependency>
 			<groupId>pe.com.claro</groupId>

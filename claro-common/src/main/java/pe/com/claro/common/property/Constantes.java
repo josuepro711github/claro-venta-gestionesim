@@ -14,6 +14,14 @@ public class Constantes {
 	public static final String API_DESCRIPTION_GESTIONESIM = "Servicio que actualiza estado de registro";
 	public static final String PERSISTENCE_CONTEXT_OAC = "pe.com.claro.venta.data.source.mssap";
 	public static final String EAIPERSISTENCEPACKAGEUNIT = "pe.com.claro.venta.gestionesim.mssap";
+	public static final String RPTA_SUCCESS = "Executed-Success";
+	
+	public static final String SERVICE_URI = "/" + NOMBRERECURSO.replaceAll("/", "");
+	public static final String NOMBRE_SERVICIO_HUBSIM = "hubSim";
+	public static final String WS_TIMEOUT_EXCEPTION = "SocketTimeoutException";
+	public static final String CODIGO_ERROR_TIMEOUT = "-1";
+	public static final String CODIGO_ERROR_DISPONIBILIDAD = "-2";
+	public static final String SEPARADOR_ESPACIO = " ";
 
 	public static final String ERROREX = "[$ex]";
 	public static final String ERROR = "[ERROR]: ";
@@ -132,11 +140,8 @@ public class Constantes {
 	public final static String HEADER_PARAM_MSG_ID = "msgid";
 	public static final String IGUAL = "=";
 	public static final String TEXTO_VACIO = "";
-	public static final String USERID = "userId";
 	public static final String IDTRANSACCION = "idTransaccion";
 	public static final String MSGID = "msgid";
-	public static final String USRID = "userId";
-	public static final String TIMESTAMP = "timestamp";
 	public static final String ACCEPT = "accept";
 	public static final String API = "api";
 	public static final String SWAGGERJAXRSCONFIG = "SwaggerJaxrsConfig";
@@ -185,4 +190,20 @@ public class Constantes {
 	public static final String PUNTOCOMA = ";";
 	public static final String NULL=null;
 	public static final String CLARO_PROPERTIES = "claro.properties";
+	
+	// 6.Headers
+	public static final String CONSUMER = "consumer";
+	public static final String DISPOSITIVO = "dispositivo";
+	public static final String LANGUAGE = "language";
+	public static final String MODULO = "modulo";
+	public static final String MSG_TYPE = "msgType";
+	public static final String OPERATION = "operation";
+	public static final String PID = "pid";
+	public static final String SYSTEM = "system";
+	public static final String TIMESTAMP = "timestapm";
+	public static final String USRID = "userId";
+	public static final String WSIP = "wsIp";
+	public static final String USERID = null;
+
+	
 }

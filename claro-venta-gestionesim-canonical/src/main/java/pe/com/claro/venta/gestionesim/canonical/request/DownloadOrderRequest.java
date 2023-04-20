@@ -1,10 +1,6 @@
 package pe.com.claro.venta.gestionesim.canonical.request;
 
-import java.io.Serializable;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class DownloadOrderRequest{
-	
+public class DownloadOrderRequest {
 	private HeaderDownloadOrderRequest header;
 	private String cancelOnGoingOrders;
 	private String eid;

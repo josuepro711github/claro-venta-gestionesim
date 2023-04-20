@@ -1,15 +1,17 @@
 package pe.com.claro.venta.gestionesim.canonical.response;
 
-public class HeaderResponse {
+public class HeaderResponse extends FunctionExecutionStatusResponse{
 
-	private FunctionExecutionStatus functionExecutionStatus;
+	private FunctionExecutionStatusResponse functionExecutionStatus;
 
-	public FunctionExecutionStatus getFunctionExecutionStatus() {
+	public FunctionExecutionStatusResponse getFunctionExecutionStatus() {
 		return functionExecutionStatus;
 	}
 
-	public void setFunctionExecutionStatus(FunctionExecutionStatus functionExecutionStatus) {
+	public void setFunctionExecutionStatus(FunctionExecutionStatusResponse functionExecutionStatus) {
 		this.functionExecutionStatus = functionExecutionStatus;
 	}
 
+	
+	
 }

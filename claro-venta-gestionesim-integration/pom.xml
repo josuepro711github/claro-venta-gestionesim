@@ -1,26 +1,25 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>pe.com.claro</groupId>
-    <artifactId>claro-enterprise-recaudaciones-afiliacion</artifactId>
+    <groupId>pe.com.claro.venta</groupId>
+    <artifactId>claro-venta-gestionesim</artifactId>
     <version>1.0.0</version>
   </parent>
   <artifactId>claro-venta-gestionesim-integration</artifactId>
-  <name>claro-venta-gestionesin-integration</name>
-  	<properties>
+  <name>claro-venta-gestionesim-integration</name>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<claro.rest.api.client>2.0.0</claro.rest.api.client>
 		<claro.common>1.0.0</claro.common>
 	</properties>
-  
-  	<dependencies>
+	<dependencies>
 		<dependency>
 			<groupId>pe.com.claro</groupId>
 			<artifactId>claro-rest-api-client</artifactId>
 			<version>${claro.rest.api.client}</version>
 		</dependency>
 		<dependency>
-			<groupId>pe.com.claro</groupId>
+			<groupId>pe.com.claro.venta</groupId>
 			<artifactId>claro-venta-gestionesim-canonical</artifactId>
 			<version>1.0.0</version>
 		</dependency>
