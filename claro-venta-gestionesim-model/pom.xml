@@ -16,7 +16,7 @@
 
   <dependencies>
 		<dependency>
-			<groupId>pe.com.claro.venta</groupId>
+			<groupId>pe.com.claro</groupId>
 			<artifactId>claro-rest-api-client</artifactId>
 			<version>${claro.rest.api.client}</version>
 		</dependency>

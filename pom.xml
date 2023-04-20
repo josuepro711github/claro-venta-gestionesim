@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>pe.com.claro</groupId>
-  <artifactId>claro-enterprise-recaudaciones-afiliacion</artifactId>
+  <groupId>pe.com.claro.venta</groupId>
+  <artifactId>claro-venta-gestionesim</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
-  <name>claro-enterprise-recaudaciones-afiliacion</name>
+  <name>claro-venta-gestionesim</name>
   <modules>
     	<module>claro-common</module>
 		<module>claro-rest-api-client</module>
@@ -14,6 +14,7 @@
 		<module>claro-venta-gestionesim-model</module>
 		<module>claro-venta-gestionesim-domain</module>
 		<module>claro-venta-gestionesim-resource</module>
+		<module>claro-venta-gestionesim-integration</module>
   </modules>
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

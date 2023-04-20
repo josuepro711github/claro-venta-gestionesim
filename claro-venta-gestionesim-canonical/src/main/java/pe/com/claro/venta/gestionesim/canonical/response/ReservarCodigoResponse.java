@@ -1,6 +1,7 @@
 package pe.com.claro.venta.gestionesim.canonical.response;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -24,7 +25,7 @@ public class ReservarCodigoResponse extends BodyResponse implements
 	private String status;
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private String nroentrega;
-	private ListaResponseOpcional listaAdicionalResponse;
+	private List<ListaResponseOpcional> listaResponseOpcional;
 	
 	public String getCodserie() {
 		return codserie;
@@ -56,11 +57,11 @@ public class ReservarCodigoResponse extends BodyResponse implements
 	public void setNroentrega(String nroentrega) {
 		this.nroentrega = nroentrega;
 	}
-	public ListaResponseOpcional getListaAdicionalResponse() {
-		return listaAdicionalResponse;
+	public List<ListaResponseOpcional> getListaResponseOpcional() {
+		return listaResponseOpcional;
 	}
-	public void setListaAdicionalResponse(ListaResponseOpcional listaAdicionalResponse) {
-		this.listaAdicionalResponse = listaAdicionalResponse;
+	public void setListaResponseOpcional(List<ListaResponseOpcional> listaResponseOpcional) {
+		this.listaResponseOpcional = listaResponseOpcional;
 	}
 	}	
 
