@@ -63,9 +63,12 @@ public class GestionesimService {
 				if (codigoSerie != null || !Constantes.TEXTOVACIO.equals(codigoSerie)) {
 					logger.info(trazabilidad + "*********** 2. Inicia Proceso Descargar Pedido ***********");
 					downloadOrderRequest.setIccid(codigoSerie);
-					descargarPedidoResponse = hubEsim.descargarPedido(trazabilidad, header, downloadOrderRequest ,elkLegadoBean);
+					// forzando status
+					String respuestaSuccess = Constantes.RPTA_SUCCESS;
+					descargarPedidoResponse.setStatus(respuestaSuccess);
+					//descargarPedidoResponse = hubEsim.descargarPedido(trazabilidad, header, downloadOrderRequest ,elkLegadoBean);
 
-				} else if (Constantes.RPTA_SUCCESS.equals(descargarPedidoResponse.getStatus())) {
+				} else if (!Constantes.RPTA_SUCCESS.equals(descargarPedidoResponse.getStatus())) {
 					logger.info(trazabilidad + "*********** 3. Inicia Proceso Actualizar Estado ***********");
 					actualizarEstadoRequest.setCodserie(codigoSerie);
 					actualizarEstadoRequest.setStatus(obtenerCodigoResponse.getStatus());
