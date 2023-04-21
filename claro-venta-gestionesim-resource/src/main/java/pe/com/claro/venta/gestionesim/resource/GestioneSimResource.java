@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import pe.com.claro.common.bean.ELKLogLegadoBean;
 import pe.com.claro.common.bean.HeaderRequest;
 import pe.com.claro.common.property.Constantes;
+import pe.com.claro.common.property.PropertiesExterno;
 import pe.com.claro.common.util.ClaroUtil;
 import pe.com.claro.common.util.PropertiesExternos;
 import pe.com.claro.venta.gestionesim.canonical.request.ActualizarEstadoRequest;
@@ -49,11 +50,8 @@ public class GestioneSimResource {
 	@EJB
 	private GestionesimService gestionesimService;
 
-	private PropertiesExternos propertiesExternos;
-	
-	public void initProperties() {
-		propertiesExternos = new PropertiesExternos(configuration);
-	}
+	@EJB
+	private PropertiesExterno propertiesExterno;
 
 	@POST
 	@Path("/reservarCodigo")
@@ -67,7 +65,6 @@ public class GestioneSimResource {
 			throws JsonProcessingException {
 		long tiempoInicio = System.currentTimeMillis();
 		long tiempoTotal = 0L;
-		initProperties();
 		Response resJSON = Response.ok().entity(Constantes.TEXTOVACIO).build();
 		Response.Status httpCode = Response.Status.CREATED;
 		String result = Constantes.TEXTO_VACIO;
@@ -88,13 +85,14 @@ public class GestioneSimResource {
 			if (null == headerRequest.getIdTransaccion()) {
 				headerRequest.setIdTransaccion(ClaroUtil.obtenerIdTransaccion());
 			}
+			
 			idTransaccion = headerRequest.getIdTransaccion();
 			mensajeTransaccion = "[" + nombreMetodo + Constantes.IDTX + idTransaccion + "] ";
 
 			logger.info(mensajeTransaccion + Constantes.INICIO + nombreMetodo);
 			logger.info(Constantes.HEADERREQUEST + ClaroUtil.printPrettyJSONString(headerRequest));
 	
-			response = gestionesimService.reservarCodigo(mensajeTransaccion, request, header, trazabilidad, elkLegadoBean, orderRequest, message, actualizarEstadoRequest, propertiesExternos);
+			response = gestionesimService.reservarCodigo(mensajeTransaccion, request, header, trazabilidad, elkLegadoBean, orderRequest, message, actualizarEstadoRequest);
 
 			response.setIdTransaccion(idTransaccion);
 			result = new ObjectMapper().writeValueAsString(response);
@@ -107,8 +105,8 @@ public class GestioneSimResource {
 			try {
 				response = new ReservarCodigoResponse();
 
-				response.setCodigoRespuesta(propertiesExternos.idf2codigo);
-				response.setMensajeRespuesta(propertiesExternos.idf2msg);
+				response.setCodigoRespuesta(propertiesExterno.getValueProperty(PropertiesExternos.IDF2CODIGO));
+				response.setMensajeRespuesta(propertiesExterno.getValueProperty(PropertiesExternos.IDF2MSG));
 				response.setIdTransaccion(idTransaccion);
 				result = new ObjectMapper().writeValueAsString(response);
 			} catch (JsonProcessingException ex) {

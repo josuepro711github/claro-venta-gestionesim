@@ -166,7 +166,7 @@ public class Constantes {
 	public static final String UNO = "1";
     public static final String DOS = "2";
     public static final String CINCO = "5";
-    public static final String ZERO = "0";
+    public static final String CERO_CADENA = "0";
     public static final int MENOS_UNO =-1;
     public static final int CERO =0;	
 	public static final int NUM_ZERO =0;
