@@ -7,14 +7,15 @@ import org.apache.log4j.Logger;
 
 import pe.com.claro.common.bean.BodyResponse;
 import pe.com.claro.common.bean.ELKLogLegadoBean;
+import pe.com.claro.common.bean.HeaderRequest;
 import pe.com.claro.common.property.Constantes;
 import pe.com.claro.common.property.PropertiesExterno;
 import pe.com.claro.common.util.ClaroUtil;
 import pe.com.claro.common.util.PropertiesExternos;
 import pe.com.claro.venta.gestionesim.canonical.request.ActualizarEstadoRequest;
 import pe.com.claro.venta.gestionesim.canonical.request.DownloadOrderRequest;
-import pe.com.claro.venta.gestionesim.canonical.request.HeaderRequestBean;
 import pe.com.claro.venta.gestionesim.canonical.request.ReservarCodigoRequest;
+import pe.com.claro.venta.gestionesim.canonical.response.ActualizarEstadoResponse;
 import pe.com.claro.venta.gestionesim.canonical.response.DownloadOrderResponse;
 import pe.com.claro.venta.gestionesim.canonical.response.ReservarCodigoResponse;
 import pe.com.claro.venta.gestionesim.domain.dao.MssapDao;
@@ -35,19 +36,20 @@ public class GestionesimService {
 	private HubEsim hubEsim;
 
 	public ReservarCodigoResponse reservarCodigo(String mensajeTransaccion, ReservarCodigoRequest reservarCodigoRequest,
-			HeaderRequestBean header, String trazabilidad, ELKLogLegadoBean elkLegadoBean,
-			DownloadOrderRequest orderRequest, String message, ActualizarEstadoRequest actualizarEstadoRequest) {
+			HeaderRequest header, String trazabilidad, ELKLogLegadoBean elkLegadoBean) {
 		logger.info(mensajeTransaccion + " Inicio Proceso Reservar Codigo ");
+		
+		ActualizarEstadoRequest actualizarEstadoRequest = new ActualizarEstadoRequest();
+		DownloadOrderRequest downloadOrderRequest = new DownloadOrderRequest();
+		
 		ReservarCodigoResponse obtenerCodigoResponse = new ReservarCodigoResponse();
 		DownloadOrderResponse descargarPedidoResponse = new DownloadOrderResponse();
-		BodyResponse actualizarEstadoResponse = new BodyResponse();
+		ActualizarEstadoResponse actualizarEstadoResponse = new ActualizarEstadoResponse();
 		try {
 			logger.info(mensajeTransaccion + "*********** 1. Inicia Proceso Obtener Codigo ***********");
-			obtenerCodigoResponse = mssapDao.obtenerCodigo(message, reservarCodigoRequest);
+			obtenerCodigoResponse = mssapDao.obtenerCodigo(mensajeTransaccion, reservarCodigoRequest);
 			logger.info(
 					mensajeTransaccion + Constantes.RESPONSE + ClaroUtil.printPrettyJSONString(obtenerCodigoResponse));
-			
-			logger.info("header???? " + header.getIdTransaccion());
 			
 			if (Constantes.CERO_CADENA.equals(obtenerCodigoResponse.getCodigoRespuesta())) {
 				obtenerCodigoResponse.setIdTransaccion(header.getIdTransaccion());
@@ -56,16 +58,18 @@ public class GestionesimService {
 				String codigoSerie = Constantes.TEXTOVACIO;
 				logger.info(mensajeTransaccion + "Obteniendo codigo serie de la actividad 1");
 				codigoSerie = obtenerCodigoResponse.getCodserie();
+				logger.info(mensajeTransaccion + "COD SERIE OBTENIDO: " + codigoSerie);
 
 				if (codigoSerie != null || !Constantes.TEXTOVACIO.equals(codigoSerie)) {
-					logger.info(mensajeTransaccion + "codigoSerie obtenido: " + codigoSerie);
 					logger.info(mensajeTransaccion + "*********** 2. Inicia Proceso Descargar Pedido ***********");
-					descargarPedidoResponse = hubEsim.descargarPedido(trazabilidad, header,
-							orderRequest, elkLegadoBean);
+					downloadOrderRequest.setIccid(codigoSerie);
+					descargarPedidoResponse = hubEsim.descargarPedido(trazabilidad, header, downloadOrderRequest ,elkLegadoBean);
 
 				} else if (Constantes.RPTA_SUCCESS.equals(descargarPedidoResponse.getStatus())) {
 					logger.info(mensajeTransaccion + "*********** 3. Inicia Proceso Actualizar Estado ***********");
-					actualizarEstadoResponse = mssapDao.actualizarEstado(message,
+					actualizarEstadoRequest.setCodserie(codigoSerie);
+					actualizarEstadoRequest.setStatus(obtenerCodigoResponse.getStatus());
+					actualizarEstadoResponse = mssapDao.actualizarEstado(mensajeTransaccion,
 							actualizarEstadoRequest);
 				}
 

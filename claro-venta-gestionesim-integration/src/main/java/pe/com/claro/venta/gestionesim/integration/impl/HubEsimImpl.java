@@ -18,6 +18,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import pe.com.claro.common.bean.ELKLogLegadoBean;
+import pe.com.claro.common.bean.HeaderRequest;
 import pe.com.claro.common.property.Constantes;
 import pe.com.claro.common.property.PropertiesExterno;
 import pe.com.claro.common.resource.exception.WSException;
@@ -26,7 +27,6 @@ import pe.com.claro.common.util.GestionEsimUtil;
 import pe.com.claro.common.util.PropertiesExternos;
 import pe.com.claro.common.util.RestTemplateEE;
 import pe.com.claro.venta.gestionesim.canonical.request.DownloadOrderRequest;
-import pe.com.claro.venta.gestionesim.canonical.request.HeaderRequestBean;
 import pe.com.claro.venta.gestionesim.canonical.response.DownloadOrderResponse;
 import pe.com.claro.venta.gestionesim.integration.HubEsim;
 
@@ -48,7 +48,7 @@ public class HubEsimImpl implements HubEsim {
 	}
 
 	@Override
-	public DownloadOrderResponse descargarPedido(String trazabilidad, HeaderRequestBean headerRequest,
+	public DownloadOrderResponse descargarPedido(String trazabilidad, HeaderRequest headerRequest,
 			DownloadOrderRequest request, ELKLogLegadoBean elkLegadoBean) throws WSException {
 		long tiempoInicio = System.currentTimeMillis();
 		DownloadOrderResponse response = null;
@@ -77,7 +77,7 @@ public class HubEsimImpl implements HubEsim {
 			httpHeaders.set(Constantes.PID, headerRequest.getPid());
 			httpHeaders.set(Constantes.SYSTEM, headerRequest.getSystem());
 			httpHeaders.set(Constantes.TIMESTAMP, headerRequest.getTimestamp());
-			httpHeaders.set(Constantes.USRID, headerRequest.getUserId());
+			httpHeaders.set(Constantes.USERID, headerRequest.getUserId());
 			httpHeaders.set(Constantes.WSIP, headerRequest.getWsIp());
 
 			HttpEntity<String> httpEntity = new HttpEntity<String>(requestJson, httpHeaders);

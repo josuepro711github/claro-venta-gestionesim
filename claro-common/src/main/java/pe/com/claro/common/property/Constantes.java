@@ -143,9 +143,6 @@ public class Constantes {
 	public final static String HEADER_PARAM_MSG_ID = "msgid";
 	public static final String IGUAL = "=";
 	public static final String TEXTO_VACIO = "";
-	public static final String IDTRANSACCION = "idTransaccion";
-	public static final String MSGID = "msgid";
-	public static final String ACCEPT = "accept";
 	public static final String API = "api";
 	public static final String SWAGGERJAXRSCONFIG = "SwaggerJaxrsConfig";
 	public static final String URLSWAGGERJAXRSCONFIG = "/SwaggerJaxrsConfig";
@@ -195,7 +192,13 @@ public class Constantes {
 	public static final String CLARO_PROPERTIES = "claro.properties";
 	
 	// 6.Headers
+	public static final String IDTRANSACCION = "idTransaccion";
+	public static final String MSGID = "msgid";
+	public static final String TIMESTAMP = "timestapm";
+	public static final String USERID = "userId";
+	public static final String ACCEPT = "accept";
 	public static final String CONSUMER = "consumer";
+	public static final String COUNTRY = "country";
 	public static final String DISPOSITIVO = "dispositivo";
 	public static final String LANGUAGE = "language";
 	public static final String MODULO = "modulo";
@@ -203,10 +206,6 @@ public class Constantes {
 	public static final String OPERATION = "operation";
 	public static final String PID = "pid";
 	public static final String SYSTEM = "system";
-	public static final String TIMESTAMP = "timestapm";
-	public static final String USRID = "userId";
 	public static final String WSIP = "wsIp";
-	public static final String USERID = null;
-
 	
 }

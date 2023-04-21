@@ -29,6 +29,7 @@ import pe.com.claro.common.util.PropertiesExternos;
 import pe.com.claro.venta.gestionesim.canonical.request.ActualizarEstadoRequest;
 import pe.com.claro.venta.gestionesim.canonical.request.ReservarCodigoRequest;
 import pe.com.claro.venta.gestionesim.canonical.response.ActualizarEstadoResponse;
+import pe.com.claro.venta.gestionesim.canonical.response.ObtenerCodigoResponse;
 import pe.com.claro.venta.gestionesim.canonical.response.ReservarCodigoResponse;
 
 @Stateless

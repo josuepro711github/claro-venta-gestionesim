@@ -28,9 +28,6 @@ import pe.com.claro.common.property.Constantes;
 import pe.com.claro.common.property.PropertiesExterno;
 import pe.com.claro.common.util.ClaroUtil;
 import pe.com.claro.common.util.PropertiesExternos;
-import pe.com.claro.venta.gestionesim.canonical.request.ActualizarEstadoRequest;
-import pe.com.claro.venta.gestionesim.canonical.request.DownloadOrderRequest;
-import pe.com.claro.venta.gestionesim.canonical.request.HeaderRequestBean;
 import pe.com.claro.venta.gestionesim.canonical.request.ReservarCodigoRequest;
 import pe.com.claro.venta.gestionesim.canonical.response.ReservarCodigoResponse;
 import pe.com.claro.venta.gestionesim.domain.service.GestionesimService;
@@ -74,10 +71,6 @@ public class GestioneSimResource {
 		HeaderRequest headerRequest = null;
 		String idTransaccion = Constantes.TEXTOVACIO;
 		String trazabilidad = null;
-		ActualizarEstadoRequest actualizarEstadoRequest = null;
-		String message = null;
-		DownloadOrderRequest orderRequest = null;
-		HeaderRequestBean header = null;
 		ELKLogLegadoBean elkLegadoBean = null;
 		try {
 			headerRequest = new HeaderRequest(httpHeaders);
@@ -92,7 +85,7 @@ public class GestioneSimResource {
 			logger.info(mensajeTransaccion + Constantes.INICIO + nombreMetodo);
 			logger.info(Constantes.HEADERREQUEST + ClaroUtil.printPrettyJSONString(headerRequest));
 	
-			response = gestionesimService.reservarCodigo(mensajeTransaccion, request, header, trazabilidad, elkLegadoBean, orderRequest, message, actualizarEstadoRequest);
+			response = gestionesimService.reservarCodigo(mensajeTransaccion, request, headerRequest, trazabilidad, elkLegadoBean);
 
 			response.setIdTransaccion(idTransaccion);
 			result = new ObjectMapper().writeValueAsString(response);

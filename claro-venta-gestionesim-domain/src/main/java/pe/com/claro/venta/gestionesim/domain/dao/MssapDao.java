@@ -7,8 +7,10 @@ import javax.ejb.Stateless;
 
 import pe.com.claro.common.resource.exception.DBException;
 import pe.com.claro.venta.gestionesim.canonical.request.ActualizarEstadoRequest;
+import pe.com.claro.venta.gestionesim.canonical.request.ObtenerCodigoRequest;
 import pe.com.claro.venta.gestionesim.canonical.request.ReservarCodigoRequest;
 import pe.com.claro.venta.gestionesim.canonical.response.ActualizarEstadoResponse;
+import pe.com.claro.venta.gestionesim.canonical.response.ObtenerCodigoResponse;
 import pe.com.claro.venta.gestionesim.canonical.response.ReservarCodigoResponse;
 import pe.com.claro.venta.gestionesim.domain.repository.MSSAPRepository;
 
