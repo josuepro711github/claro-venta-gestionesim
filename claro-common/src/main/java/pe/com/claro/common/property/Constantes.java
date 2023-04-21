@@ -14,11 +14,14 @@ public class Constantes {
 	public static final String API_DESCRIPTION_GESTIONESIM = "Servicio que actualiza estado de registro";
 	public static final String PERSISTENCE_CONTEXT_OAC = "pe.com.claro.venta.data.source.mssap";
 	public static final String EAIPERSISTENCEPACKAGEUNIT = "pe.com.claro.venta.gestionesim.mssap";
+//	public static final String EAIPERSISTENCEPACKAGEUNIT = "pe.com.claro.jdbc.datasources.noXA.mssapDSjdbc";
 	public static final String RPTA_SUCCESS = "Executed-Success";
 	
 	public static final String SERVICE_URI = "/" + NOMBRERECURSO.replaceAll("/", "");
 	public static final String NOMBRE_SERVICIO_HUBSIM = "hubSim";
 	public static final String WS_TIMEOUT_EXCEPTION = "SocketTimeoutException";
+	public final static int STATUS_TIME_OUT = 504;
+	public final static int STATUS_DISPONIBILIDAD = 503;
 	public static final String CODIGO_ERROR_TIMEOUT = "-1";
 	public static final String CODIGO_ERROR_DISPONIBILIDAD = "-2";
 	public static final String SEPARADOR_ESPACIO = " ";
@@ -154,8 +157,8 @@ public class Constantes {
     public static final String ASTERISCO = "*";
     public static final String METODOSPERMITIDOS = "GET, POST, DELETE, PUT";
     public static final String CONTENTTYPE = "Content-Type";
-    public static final String DEFAULTENCONDIGPROPERTIES = null;
-    public static final String DEFAULTENCONDINGAPI = null;
+    public static final String DEFAULTENCONDIGPROPERTIES = "ISO-8859-1";
+    public static final String DEFAULTENCONDINGAPI = "UTF-8";
 	public static final String VALOR = "valor";
 	public static final String ERROR_EXCEPTION = "Error Exception: ";
 	public static final String ERROREXCEPTION = "Error [Exception]";

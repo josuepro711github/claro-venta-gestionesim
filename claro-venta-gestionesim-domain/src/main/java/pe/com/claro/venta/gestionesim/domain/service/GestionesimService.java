@@ -16,20 +16,19 @@ import pe.com.claro.venta.gestionesim.canonical.request.HeaderRequestBean;
 import pe.com.claro.venta.gestionesim.canonical.request.ReservarCodigoRequest;
 import pe.com.claro.venta.gestionesim.canonical.response.DownloadOrderResponse;
 import pe.com.claro.venta.gestionesim.canonical.response.ReservarCodigoResponse;
-import pe.com.claro.venta.gestionesim.domain.repository.MSSAPRepository;
+import pe.com.claro.venta.gestionesim.domain.dao.MssapDao;
 import pe.com.claro.venta.gestionesim.integration.HubEsim;
 
 @Stateless
 public class GestionesimService {
 	private static final Logger logger = Logger.getLogger(GestionesimService.class);
-
 	@EJB
-	private MSSAPRepository mssapRepository;
+	private MssapDao mssapDao;
 
 	@EJB
 	private HubEsim hubEsim;
 
-	public ReservarCodigoResponse reservarCodigo(String mensajeTransaccion, ReservarCodigoRequest request,
+	public ReservarCodigoResponse reservarCodigo(String mensajeTransaccion, ReservarCodigoRequest reservarCodigoRequest,
 			HeaderRequestBean header, String trazabilidad, ELKLogLegadoBean elkLegadoBean,
 			DownloadOrderRequest orderRequest, String message, ActualizarEstadoRequest actualizarEstadoRequest, PropertiesExternos propertiesExternos) {
 		logger.info(mensajeTransaccion + " Inicio Proceso Reservar Codigo ");
@@ -38,7 +37,8 @@ public class GestionesimService {
 		BodyResponse actualizarEstadoResponse = new BodyResponse();
 		try {
 			logger.info(mensajeTransaccion + "*********** 1. Inicia Proceso Obtener Codigo ***********");
-			obtenerCodigoResponse = mssapRepository.obtenerCodigo(mensajeTransaccion, request, propertiesExternos );
+//			obtenerCodigoResponse = mssapRepository.obtenerCodigo(mensajeTransaccion, request, propertiesExternos );
+			obtenerCodigoResponse = mssapDao.obtenerCodigo(message, propertiesExternos, reservarCodigoRequest);
 			logger.info(
 					mensajeTransaccion + Constantes.RESPONSE + ClaroUtil.printPrettyJSONString(obtenerCodigoResponse));
 
@@ -57,7 +57,8 @@ public class GestionesimService {
 					
 				} else if (Constantes.RPTA_SUCCESS.equals(descargarPedidoResponse.getStatus())){
 					logger.info(mensajeTransaccion + "*********** 3. Inicia Proceso Actualizar Estado ***********");					
-					actualizarEstadoResponse = mssapRepository.actualizarEstado(message, actualizarEstadoRequest, propertiesExternos);
+//					actualizarEstadoResponse = mssapRepository.actualizarEstado(message, actualizarEstadoRequest, propertiesExternos);
+					actualizarEstadoResponse = mssapDao.actualizarEstado(message, propertiesExternos, actualizarEstadoRequest);
 				}
 				
 			} else {
