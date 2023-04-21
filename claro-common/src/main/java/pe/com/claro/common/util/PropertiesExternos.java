@@ -93,4 +93,5 @@ public class PropertiesExternos {
 		this.idt4codigo = ClaroUtil.convertProperties(configuration.getProperty("idt4.codigo"));
 		this.idt4msg = ClaroUtil.convertProperties(configuration.getProperty("idt4.mensaje"));
 	}
+
 }
