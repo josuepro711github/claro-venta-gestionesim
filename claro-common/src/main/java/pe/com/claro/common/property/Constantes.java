@@ -3,7 +3,7 @@ package pe.com.claro.common.property;
 public class Constantes {
 
 	// 1.Constantes Generales de Servicio 
-	public static final String NOMBRERECURSO = "claro-venta-gestionesim";
+	public static final String NOMBRE_SERVICIO = "claro-venta-gestionesim";
 	public static final String SEPARADORPUNTO = ".";
 	public static final String VERSION = "1.0.0";
 	public static final String PATH = "/venta/gestionesim/v1.0.0";
@@ -17,7 +17,7 @@ public class Constantes {
 //	public static final String EAIPERSISTENCEPACKAGEUNIT = "pe.com.claro.jdbc.datasources.noXA.mssapDSjdbc";
 	public static final String RPTA_SUCCESS = "Executed-Success";
 	
-	public static final String SERVICE_URI = "/" + NOMBRERECURSO.replaceAll("/", "");
+	public static final String SERVICE_URI = "/" + NOMBRE_SERVICIO.replaceAll("/", "");
 	public static final String NOMBRE_SERVICIO_HUBSIM = "hubSim";
 	public static final String WS_TIMEOUT_EXCEPTION = "SocketTimeoutException";
 	public final static int STATUS_TIME_OUT = 504;
@@ -154,8 +154,8 @@ public class Constantes {
     public static final String ASTERISCO = "*";
     public static final String METODOSPERMITIDOS = "GET, POST, DELETE, PUT";
     public static final String CONTENTTYPE = "Content-Type";
-    public static final String DEFAULTENCONDIGPROPERTIES = "ISO-8859-1";
-    public static final String DEFAULTENCONDINGAPI = "UTF-8";
+    public static final String DEFAUL_ENCODING_PROPERTIES = "ISO-8859-1";
+    public static final String DEFAUL_ENCODING_API = "UTF-8";
 	public static final String VALOR = "valor";
 	public static final String ERROR_EXCEPTION = "Error Exception: ";
 	public static final String ERROREXCEPTION = "Error [Exception]";

@@ -35,7 +35,7 @@ public class PropertiesExterno {
 			Properties propertiesExterno = new Properties();
 			InputStream is = new FileInputStream(
 					System.getProperty(Constantes.CLARO_PROPERTIES)
-							+ File.separator + Constantes.NOMBRE_API
+							+ File.separator + Constantes.NOMBRE_SERVICIO
 							+ File.separator + fileInClasspath);
 			propertiesExterno.load(is);
 			mapProperties.putAll(propertiesExterno
