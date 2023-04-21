@@ -3,94 +3,64 @@ package pe.com.claro.common.util;
 import java.io.Serializable;
  
 import javax.ws.rs.core.Configuration;
+
  
 public class PropertiesExternos implements Serializable {
  
-	private static final long serialVersionUID = 1L;
- 
-	public String mssapjndi; 
-	public String mssapbd; 
-	public String mssapowner; 
-	
-	// Timeouts
-	public String mssaptimeoutconexionobtenercodigo; 
-	public String mssaptimeoutejecucionobtenercodigo; 
-	public String mssaptimeoutconexionactualizarestado; 
-	public String mssaptimeoutejecucionactualizarestado; 
-	
-	public String urlhubesim;
-	public String metodohubesim;
-	public Integer downloadOrderTimeoutConexion;
-	public Integer downloadOrderTimeoutEjecucion;
-	
-    public String status;
- 
-	//StoreProcedure
-	public String mssappackagegestionesim;
-	public String mssapspobtenercodigo;
-	public String mssapspactualizarestado;
-	// IDF
-	public String idf0codigo;
-	public String idf0msg;
-	public String idf1codigo;
-	public String idf1msg;
-	public String idf2codigo;
-	public String idf2msg;
-	public String idf3codigo;
-	public String idf3msg;
-    //IDT
-	public String idt1codigo;
-	public String idt1msg;
-	public String idt2codigo;
-	public String idt2msg;
-	public String idt3codigo;
-	public String idt3msg;
-	public String idt4codigo;
-	public String idt4msg;
-	
-	// constructor
-	public PropertiesExternos(Configuration configuration) {
-		super();
-		this.downloadOrderTimeoutConexion = ClaroUtil
-				.convertProperties(configuration.getProperty("bd.mssap.jndi")) == null ? 0
-						: Integer.parseInt(ClaroUtil
-								.convertProperties(configuration.getProperty("ws.download.order.timeout.conexion")));
-		this.downloadOrderTimeoutEjecucion = ClaroUtil
-				.convertProperties(configuration.getProperty("ws.download.order.timeout.ejecucion")) == null ? 0
-						: Integer.parseInt(ClaroUtil
-								.convertProperties(configuration.getProperty("ws.download.order.timeout.ejecucion")));
-		this.mssapjndi = ClaroUtil.convertProperties(configuration.getProperty("bd.mssap.jndi"));
-		this.mssapbd = ClaroUtil.convertProperties(configuration.getProperty("bd.mssap"));
-		this.mssapowner = ClaroUtil.convertProperties(configuration.getProperty("bd.mssap.owner"));
-		this.mssaptimeoutconexionobtenercodigo = ClaroUtil.convertProperties(configuration.getProperty("bd.mssap.timeout.conexion.obtener.codigo"));
-		this.mssaptimeoutejecucionobtenercodigo = ClaroUtil.convertProperties(configuration.getProperty("bd.mssap.timeout.ejecucion.obtener.codigo"));
-		this.mssaptimeoutconexionactualizarestado = ClaroUtil.convertProperties(configuration.getProperty("bd.mssap.timeout.conexion.actualizar.estado"));
-		this.mssaptimeoutejecucionactualizarestado = ClaroUtil.convertProperties(configuration.getProperty("bd.mssap.timeout.ejecucion.actualizar.estado"));
-		this.urlhubesim = ClaroUtil.convertProperties(configuration.getProperty("ws.hubEsim.wsdl"));		
-	    this.metodohubesim = ClaroUtil.convertProperties(configuration.getProperty("ws.hubEsim.metodo"));
-		this.status = ClaroUtil.convertProperties(configuration.getProperty("estado.libre"));
-	 
-		this.mssappackagegestionesim = ClaroUtil.convertProperties(configuration.getProperty("bd.mssap.package.gestiona.esim"));	
-		this.mssapspobtenercodigo = ClaroUtil.convertProperties(configuration.getProperty("bd.mssap.sp.obtener.codigo"));	
-		this.mssapspactualizarestado = ClaroUtil.convertProperties(configuration.getProperty("bd.mssap.sp.actualizar.estado"));	
-		//IDF
-		this.idf0codigo = ClaroUtil.convertProperties(configuration.getProperty("idf0.codigo"));	
-		this.idf0msg = ClaroUtil.convertProperties(configuration.getProperty("idf0.mensaje"));	
-		this.idf1codigo = ClaroUtil.convertProperties(configuration.getProperty("idf1.codigo"));	
-		this.idf1msg = ClaroUtil.convertProperties(configuration.getProperty("idf1.mensaje"));	
-		this.idf2codigo = ClaroUtil.convertProperties(configuration.getProperty("idf2.codigo"));	
-		this.idf2msg = ClaroUtil.convertProperties(configuration.getProperty("idf2.mensaje"));	
-		this.idf3codigo = ClaroUtil.convertProperties(configuration.getProperty("idf3.codigo"));	
-		this.idf3msg = ClaroUtil.convertProperties(configuration.getProperty("idf3.mensaje"));	
-		//IDT
-		this.idt1codigo = ClaroUtil.convertProperties(configuration.getProperty("idt1.codigo"));	
-		this.idt1msg = ClaroUtil.convertProperties(configuration.getProperty("idt1.mensaje"));	
-		this.idt2codigo = ClaroUtil.convertProperties(configuration.getProperty("idt2.codigo"));	
-		this.idt2msg = ClaroUtil.convertProperties(configuration.getProperty("idt2.mensaje"));	
-		this.idt3codigo = ClaroUtil.convertProperties(configuration.getProperty("idt3.codigo"));	
-		this.idt3msg = ClaroUtil.convertProperties(configuration.getProperty("idt3.mensaje"));	
-		this.idt4codigo = ClaroUtil.convertProperties(configuration.getProperty("idt4.codigo"));	
-		this.idt4msg = ClaroUtil.convertProperties(configuration.getProperty("idt4.mensaje"));
+	private PropertiesExternos() {
 	}
 	
+	private static final long serialVersionUID = 1L;
+	
+	public static final String STATUS = "estado.libre";
+
+	public static final String MSSAPJNDI = "bd.mssap.jndi";
+	public static final String MSSAPBD = "bd.mssap";
+	public static final String MSSAPOWNER = "bd.mssap.owner";
+	
+	// Timeouts
+	public static final String MSSAPTIMEOUTCONEXIONOBTENERCODIGO = "bd.mssap.timeout.conexion.obtener.codigo";
+	public static final String MSSAPTIMEOUTEJECUCIONOBTENERCODIGO = "bd.mssap.timeout.ejecucion.obtener.codigo";
+	public static final String MSSAPTIMEOUTCONEXIONACTUALIZARESTADO = "bd.mssap.timeout.conexion.actualizar.estado";
+	public static final String MSSAPTIMEOUTEJECUCIONACTUALIZARESTADO = "bd.mssap.timeout.ejecucion.actualizar.estado";
+
+	//StoreProcedure
+	public static final String MSSAPPACKAGEGESTIONESIM = "bd.mssap.package.gestiona.esim";
+	public static final String MSSAPSPOBTENERCODIGO = "bd.mssap.sp.obtener.codigo";
+	public static final String MSSAPSPACTUALIZARESTADO = "bd.mssap.sp.actualizar.estado";
+	
+	// IDF
+	public static final String IDF0CODIGO = "idf0.codigo";
+	public static final String IDF0MSG = "idf0.mensaje";
+	public static final String IDF1CODIGO = "idf1.codigo";
+	public static final String IDF1MSG = "idf1.mensaje";
+	public static final String IDF2CODIGO = "idf2.codigo";
+	public static final String IDF2MSG = "idf2.mensaje";
+	public static final String IDF3CODIGO = "idf3.codigo";
+	public static final String IDF3MSG = "idf3.mensaje";
+	
+	//IDT
+	public static final String IDT1CODIGO = "idt1.codigo";
+	public static final String IDT1MSG = "idt1.mensaje";
+	public static final String IDT2CODIGO = "idt2.codigo";
+	public static final String IDT2MSG = "idt2.mensaje";
+	public static final String IDT3CODIGO = "idt3.codigo";
+	public static final String IDT3MSG = "idt3.mensaje";
+	public static final String IDT4CODIGO = "idt4.codigo";
+	public static final String IDT4MSG = "idt4.mensaje";
+
+	
+	//NUEVAS LLAVES
+	public static final String URLHUBESIM = "ws.hubEsim.wsdl";
+	public static final String DOWNLOADORDERTIMEOUTCONEXION = "ws.download.order.timeout.conexion";
+	public static final String DOWNLOADORDERTIMEOUTEJECUCION = "ws.download.order.timeout.ejecucion";
 }
+
+
+
+
+
+
+
+
+

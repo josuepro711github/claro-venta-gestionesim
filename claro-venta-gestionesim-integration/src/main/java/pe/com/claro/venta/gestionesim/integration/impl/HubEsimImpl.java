@@ -19,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 
 import pe.com.claro.common.bean.ELKLogLegadoBean;
 import pe.com.claro.common.property.Constantes;
+import pe.com.claro.common.property.PropertiesExterno;
 import pe.com.claro.common.resource.exception.WSException;
 import pe.com.claro.common.util.ELKUtil;
 import pe.com.claro.common.util.GestionEsimUtil;
@@ -36,6 +37,9 @@ public class HubEsimImpl implements HubEsim {
 	@EJB
 	RestTemplateEE restTemplates;
 	
+	@EJB
+	private PropertiesExterno propertiesExterno;
+	
 	private static final Logger logger = LogManager.getLogger(HubEsimImpl.class);
 	private void imprimirFinMetodo(String trazabilidad,String responseJson,Long tiempoInicio) {
 		logger.info(trazabilidad + "Datos de Salida:\n" + responseJson);
@@ -44,7 +48,7 @@ public class HubEsimImpl implements HubEsim {
 	}
 
 	@Override
-	public DownloadOrderResponse descargarPedido(String trazabilidad, PropertiesExternos propertiesExterno,
+	public DownloadOrderResponse descargarPedido(String trazabilidad,
 			HeaderRequestBean headerRequest, DownloadOrderRequest request, ELKLogLegadoBean elkLegadoBean)
 			throws WSException {
 		long tiempoInicio = System.currentTimeMillis();
@@ -52,9 +56,9 @@ public class HubEsimImpl implements HubEsim {
 		String responseJson = null;
 		String nombreMetodo = "descargarPedido";
 		
-		String URL = propertiesExterno.urlhubesim;
-		int TIMEOUT_CONEXION = propertiesExterno.downloadOrderTimeoutConexion;
-		int TIMEOUT_EJECUCION = propertiesExterno.downloadOrderTimeoutEjecucion;
+		String URL = propertiesExterno.getValueProperty(PropertiesExternos.URLHUBESIM);
+		int TIMEOUT_CONEXION = Integer.parseInt(propertiesExterno.getValueProperty(PropertiesExternos.DOWNLOADORDERTIMEOUTCONEXION)); 
+		int TIMEOUT_EJECUCION = Integer.parseInt(propertiesExterno.getValueProperty(PropertiesExternos.DOWNLOADORDERTIMEOUTEJECUCION));
 		
 		try {
 			String requestJson = GestionEsimUtil.printPrettyJSONString(request);

@@ -173,7 +173,7 @@ public class ClaroUtil {
 		if (object != null) {
 			a = object.toString();
 			try {
-				a = new String(a.getBytes(Constantes.DEFAULTENCONDIGPROPERTIES), Constantes.DEFAULTENCONDINGAPI);
+				a = new String(a.getBytes(Constantes.DEFAUL_ENCODING_PROPERTIES), Constantes.DEFAUL_ENCODING_API);
 			} catch (Exception e) {
 				log.error("Error getProperties Encoding Failed, trayendo Encoding por defecto", e);
 			}
@@ -375,7 +375,7 @@ public class ClaroUtil {
 		if (object != null) {
 			a = object.toString();
 			try {
-				a = new String(a.getBytes(Constantes.DEFAULTENCONDIGPROPERTIES), Constantes.DEFAULTENCONDINGAPI);
+				a = new String(a.getBytes(Constantes.DEFAUL_ENCODING_PROPERTIES), Constantes.DEFAUL_ENCODING_API);
 			} catch (Exception e) {
 				log.error("Error getProperties Encoding Failed, trayendo Encoding por defecto", e);
 			}
