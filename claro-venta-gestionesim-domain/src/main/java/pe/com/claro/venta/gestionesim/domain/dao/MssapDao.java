@@ -7,10 +7,7 @@ import javax.ejb.Stateless;
 
 import pe.com.claro.common.resource.exception.DBException;
 import pe.com.claro.venta.gestionesim.canonical.request.ActualizarEstadoRequest;
-import pe.com.claro.venta.gestionesim.canonical.request.ObtenerCodigoRequest;
-import pe.com.claro.venta.gestionesim.canonical.request.ReservarCodigoRequest;
 import pe.com.claro.venta.gestionesim.canonical.response.ActualizarEstadoResponse;
-import pe.com.claro.venta.gestionesim.canonical.response.ObtenerCodigoResponse;
 import pe.com.claro.venta.gestionesim.canonical.response.ReservarCodigoResponse;
 import pe.com.claro.venta.gestionesim.domain.repository.MSSAPRepository;
 
@@ -21,8 +18,8 @@ public class MssapDao implements Serializable {
 	@EJB
 	private MSSAPRepository mssapRepository;
 
-	public ReservarCodigoResponse obtenerCodigo(String message, ReservarCodigoRequest request) throws DBException {
-		return mssapRepository.obtenerCodigo(message, request);
+	public ReservarCodigoResponse obtenerCodigo(String trazabilidad, String status) throws DBException {
+		return mssapRepository.obtenerCodigo(trazabilidad, status);
 	}
 
 	public ActualizarEstadoResponse actualizarEstado(String message, ActualizarEstadoRequest request) throws DBException {

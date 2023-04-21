@@ -39,7 +39,7 @@ public class HubEsimImpl implements HubEsim {
 	private PropertiesExterno propertiesExterno;
 	
 	@EJB
-	RestTemplateEE restTemplates;
+	private RestTemplateEE restTemplates;
 
 	private void imprimirFinMetodo(String trazabilidad, String responseJson, Long tiempoInicio) {
 		logger.info(trazabilidad + "Datos de Salida:\n" + responseJson);

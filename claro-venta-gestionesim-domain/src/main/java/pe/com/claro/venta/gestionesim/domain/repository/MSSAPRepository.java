@@ -25,11 +25,11 @@ import pe.com.claro.common.domain.repository.AbstractRepository;
 import pe.com.claro.common.property.Constantes;
 import pe.com.claro.common.property.PropertiesExterno;
 import pe.com.claro.common.resource.exception.DBException;
+import pe.com.claro.common.util.ClaroUtil;
 import pe.com.claro.common.util.PropertiesExternos;
 import pe.com.claro.venta.gestionesim.canonical.request.ActualizarEstadoRequest;
 import pe.com.claro.venta.gestionesim.canonical.request.ReservarCodigoRequest;
 import pe.com.claro.venta.gestionesim.canonical.response.ActualizarEstadoResponse;
-import pe.com.claro.venta.gestionesim.canonical.response.ObtenerCodigoResponse;
 import pe.com.claro.venta.gestionesim.canonical.response.ReservarCodigoResponse;
 
 @Stateless
@@ -48,14 +48,14 @@ public class MSSAPRepository extends AbstractRepository<Object> implements Seria
 		logger.info("Cargando el contexto de PERSISTENCE CONTEXT MSSAP");
 	}
 
-	public ReservarCodigoResponse obtenerCodigo(String message, ReservarCodigoRequest request) throws DBException {
+	public ReservarCodigoResponse obtenerCodigo(String trazabilidad, String status) throws DBException {
 
 		long tiempoInicio = System.currentTimeMillis();
 		String nombreMetodo = "obtenerCodigo";
-		String mensajeTransaccion = message + "[" + nombreMetodo + "]";
+		String mensajeTransaccion = trazabilidad + "[" + nombreMetodo + "]";
 
 		StringBuffer storeProcedure = new StringBuffer();
-		logger.info(message + Constantes.MENSAJE_INICIO_SERVICIO + nombreMetodo + Constantes.MENSAJE_FINAL_REPOSITORY);
+		logger.info(trazabilidad + Constantes.MENSAJE_INICIO_SERVICIO + nombreMetodo + Constantes.MENSAJE_FINAL_REPOSITORY);
 		ReservarCodigoResponse response = new ReservarCodigoResponse();
 		String nombrebd = propertiesExterno.getValueProperty(PropertiesExternos.MSSAPBD);
 		String owner = propertiesExterno.getValueProperty(PropertiesExternos.MSSAPOWNER);
@@ -86,7 +86,7 @@ public class MSSAPRepository extends AbstractRepository<Object> implements Seria
 						CallableStatement call = connection
 								.prepareCall("call " + storeProcedure.toString() + "(?,?,?,?,?,?,?,?)");
 						call.setQueryTimeout(Integer.parseInt(timeouteje));
-						call.setString(1, propertiesExterno.getValueProperty(PropertiesExternos.STATUS));
+						call.setString(1, status);
 						call.registerOutParameter(2, Types.VARCHAR);
 						call.registerOutParameter(3, Types.VARCHAR);
 						call.registerOutParameter(4, Types.VARCHAR);
@@ -98,6 +98,11 @@ public class MSSAPRepository extends AbstractRepository<Object> implements Seria
 
 						logger.info(mensajeTransaccion + Constantes.INVOCOSP + storeProcedure);
 
+						response.setCodserie(call.getString(2));
+						response.setCodmaterial(call.getString(3));
+						response.setCodinterlocutor(call.getString(4));
+						response.setStatus(call.getString(5));;
+						response.setNroentrega(call.getString(6));
 						response.setCodigoRespuesta(call.getString(7));
 						response.setMensajeRespuesta(call.getString(8));
 
