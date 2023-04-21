@@ -36,7 +36,7 @@ public class HeaderRequestBean{
 		if (a != null)
 			this.timestamp = a.getTime();
 		
-		this.userId  = httpHeaders.getRequestHeader( Constantes.USRID ) != null? httpHeaders.getRequestHeader( Constantes.USRID ).get( 0 ): null;
+		this.userId  = httpHeaders.getRequestHeader( Constantes.USERID ) != null? httpHeaders.getRequestHeader( Constantes.USERID ).get( 0 ): null;
 		this.accept =  httpHeaders.getRequestHeader( Constantes.ACCEPT ) != null? httpHeaders.getRequestHeader( Constantes.ACCEPT ).get( 0 ): null;
 	}
 

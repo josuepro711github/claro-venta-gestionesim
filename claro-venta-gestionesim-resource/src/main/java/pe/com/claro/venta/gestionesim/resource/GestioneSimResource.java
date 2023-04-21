@@ -28,9 +28,6 @@ import pe.com.claro.common.property.Constantes;
 import pe.com.claro.common.property.PropertiesExterno;
 import pe.com.claro.common.util.ClaroUtil;
 import pe.com.claro.common.util.PropertiesExternos;
-import pe.com.claro.venta.gestionesim.canonical.request.ActualizarEstadoRequest;
-import pe.com.claro.venta.gestionesim.canonical.request.DownloadOrderRequest;
-import pe.com.claro.venta.gestionesim.canonical.request.HeaderRequestBean;
 import pe.com.claro.venta.gestionesim.canonical.request.ReservarCodigoRequest;
 import pe.com.claro.venta.gestionesim.canonical.response.ReservarCodigoResponse;
 import pe.com.claro.venta.gestionesim.domain.service.GestionesimService;
@@ -69,13 +66,10 @@ public class GestioneSimResource {
 		Response.Status httpCode = Response.Status.CREATED;
 		String result = Constantes.TEXTO_VACIO;
 		ReservarCodigoResponse response = null;
-		String mensajeTransaccion = Constantes.TEXTO_VACIO;
+		String trazabilidad = Constantes.TEXTO_VACIO;
 		String nombreMetodo = "reservarCodigo";
 		HeaderRequest headerRequest = null;
 		String idTransaccion = Constantes.TEXTOVACIO;
-		String trazabilidad = null;
-		String message = null;
-		HeaderRequestBean header = null;
 		ELKLogLegadoBean elkLegadoBean = null;
 		try {
 			headerRequest = new HeaderRequest(httpHeaders);
@@ -83,13 +77,13 @@ public class GestioneSimResource {
 			if (null == headerRequest.getIdTransaccion()) {
 				headerRequest.setIdTransaccion(ClaroUtil.obtenerIdTransaccion());
 			}
+			
 			idTransaccion = headerRequest.getIdTransaccion();
-			mensajeTransaccion = "[" + nombreMetodo + Constantes.IDTX + idTransaccion + "] ";
+			trazabilidad = "[" + nombreMetodo + Constantes.IDTX + idTransaccion + "] ";
 
-			logger.info(mensajeTransaccion + Constantes.INICIO + nombreMetodo);
+			logger.info(trazabilidad + Constantes.INICIO + nombreMetodo);
 			logger.info(Constantes.HEADERREQUEST + ClaroUtil.printPrettyJSONString(headerRequest));
-	
-			response = gestionesimService.reservarCodigo(mensajeTransaccion, request, header, trazabilidad, elkLegadoBean, message);
+			response = gestionesimService.reservarCodigo(trazabilidad, request, headerRequest, elkLegadoBean);
 
 			response.setIdTransaccion(idTransaccion);
 			result = new ObjectMapper().writeValueAsString(response);
@@ -107,15 +101,15 @@ public class GestioneSimResource {
 				response.setIdTransaccion(idTransaccion);
 				result = new ObjectMapper().writeValueAsString(response);
 			} catch (JsonProcessingException ex) {
-				logger.error(mensajeTransaccion + Constantes.ERROR + ex.getCause());
+				logger.error(trazabilidad + Constantes.ERROR + ex.getCause());
 			}
 
 			resJSON = Response.status(httpCode).entity(result).build();
-			logger.error(mensajeTransaccion + Constantes.ERROR + e.getCause());
+			logger.error(trazabilidad + Constantes.ERROR + e.getCause());
 		} finally {
 			logger.info(Constantes.RESPONSE + ClaroUtil.printPrettyJSONString(response));
 			tiempoTotal = System.currentTimeMillis() - tiempoInicio;
-			logger.info(ClaroUtil.loggerFin(mensajeTransaccion, tiempoTotal, nombreMetodo));
+			logger.info(ClaroUtil.loggerFin(trazabilidad, tiempoTotal, nombreMetodo));
 		}
 
 		return resJSON;

@@ -55,8 +55,8 @@ public class ClaroUtil {
 				? httpHeaders.getRequestHeader(Constantes.TIMESTAMP).get(0).toString() : Constantes.TEXTOVACIO);
 		if (a != null)
 			timestamp = a.getTime().toString();
-		String userId = httpHeaders.getRequestHeader(Constantes.USRID) != null
-				? httpHeaders.getRequestHeader(Constantes.USRID).get(0) : "";
+		String userId = httpHeaders.getRequestHeader(Constantes.USERID) != null
+				? httpHeaders.getRequestHeader(Constantes.USERID).get(0) : "";
 		String accept = httpHeaders.getRequestHeader(Constantes.ACCEPT) != null
 				? httpHeaders.getRequestHeader(Constantes.ACCEPT).get(0) : "";
 		StringBuffer data = new StringBuffer();
@@ -66,7 +66,7 @@ public class ClaroUtil {
 		data.append(msgid);
 		data.append(" " + Constantes.TIMESTAMP + "=");
 		data.append(timestamp);
-		data.append(" " + Constantes.USRID + "=");
+		data.append(" " + Constantes.USERID + "=");
 		data.append(userId);
 		data.append(" " + Constantes.ACCEPT + "=");
 		data.append(accept);
@@ -82,7 +82,7 @@ public class ClaroUtil {
 			return null;
 		if (httpHeaders.getRequestHeader(Constantes.TIMESTAMP) == null)
 			return null;
-		if (httpHeaders.getRequestHeader(Constantes.USRID) == null)
+		if (httpHeaders.getRequestHeader(Constantes.USERID) == null)
 			return null;
 
 		String idTransaccion = httpHeaders.getRequestHeader(Constantes.IDTRANSACCION) != null
@@ -91,8 +91,8 @@ public class ClaroUtil {
 				? httpHeaders.getRequestHeader(Constantes.MSGID).get(0) : "";
 		String timestamp = httpHeaders.getRequestHeader(Constantes.TIMESTAMP) != null
 				? httpHeaders.getRequestHeader(Constantes.TIMESTAMP).get(0) : "";
-		String userId = httpHeaders.getRequestHeader(Constantes.USRID) != null
-				? httpHeaders.getRequestHeader(Constantes.USRID).get(0) : "";
+		String userId = httpHeaders.getRequestHeader(Constantes.USERID) != null
+				? httpHeaders.getRequestHeader(Constantes.USERID).get(0) : "";
 
 		StringBuffer data = new StringBuffer();
 		data.append("[" + Constantes.IDTRANSACCION + "=");
@@ -101,7 +101,7 @@ public class ClaroUtil {
 		data.append(msgid);
 		data.append(" " + Constantes.TIMESTAMP + "=");
 		data.append(timestamp);
-		data.append(" " + Constantes.USRID + "=");
+		data.append(" " + Constantes.USERID + "=");
 		data.append(userId);
 		data.append(" " + Constantes.ACCEPT + "=");
 		data.append(httpHeaders.getMediaType());

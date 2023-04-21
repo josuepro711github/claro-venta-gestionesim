@@ -23,6 +23,12 @@
 			<artifactId>claro-venta-gestionesim-canonical</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		
+	    <dependency>
+			<groupId>pe.com.claro.venta</groupId>
+			<artifactId>claro-rest-api-common</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>pe.com.claro.venta</groupId>
